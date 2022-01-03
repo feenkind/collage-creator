@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useRef } from 'react';
-import { Grid } from '@mui/material';
+import { Alert, Grid } from '@mui/material';
 import { Layer, Line, Rect, Stage } from 'react-konva';
 import Konva from 'konva';
 import UploadImage from './UploadImage';
@@ -64,6 +64,17 @@ const Canvas = ({
       : downloadAreaHeight + 20
     : 0;
 
+  const Hint =
+    images.length === 0 && texts.length === 0 ? (
+      <Alert severity="info">
+        Seems like your drawing area is empty. Upload an image or insert text to
+        get started.
+        <br />
+        You can also change the size of the drawing area or add a background
+        color. See the instructions for more information.
+      </Alert>
+    ) : null;
+
   return (
     <Grid
       item
@@ -77,6 +88,7 @@ const Canvas = ({
         // display div over canvas during download, to hide all resizing and invisible setting
         downloadInProgress && <DownloadInProgress />
       }
+      {Hint}
       <Stage
         width={canvasWidth}
         height={canvasHeight}

@@ -89,30 +89,9 @@ const Sidebar = ({
           <Grid item xs={12}>
             <Help />
           </Grid>
-
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              fullWidth={true}
-              startIcon={<Download />}
-              onClick={() => {
-                // deselect any item, parent callback
-                resetSelect();
-                // hide download area borders for download
-                handleDownloadInProgress(true);
-                // set timeout before download, so all items are deselected on the download
-                setTimeout(() => onImageDownload(), 1000);
-                // show download area borders again, also with timeout so they are not visible on the downloaded image
-                setTimeout(() => handleDownloadInProgress(false), 1000);
-              }}
-            >
-              Download Collage
-            </Button>
-          </Grid>
-
           <Grid item xs={12} md={6}>
             <Button
-              variant="outlined"
+              variant="contained"
               fullWidth={true}
               startIcon={<ZoomOut />}
               // zoom is disabled when minimum zoom is reached
@@ -127,7 +106,7 @@ const Sidebar = ({
           </Grid>
           <Grid item xs={12} md={6}>
             <Button
-              variant="outlined"
+              variant="contained"
               fullWidth={true}
               startIcon={<ZoomIn />}
               // zoom is disabled when maximum zoom is reached
@@ -207,6 +186,26 @@ const Sidebar = ({
           />
         </AccordionDetails>
       </Accordion>
+
+      <Box my={3}>
+        <Button
+          variant="contained"
+          fullWidth={true}
+          startIcon={<Download />}
+          onClick={() => {
+            // deselect any item, parent callback
+            resetSelect();
+            // hide download area borders for download
+            handleDownloadInProgress(true);
+            // set timeout before download, so all items are deselected on the download
+            setTimeout(() => onImageDownload(), 1000);
+            // show download area borders again, also with timeout so they are not visible on the downloaded image
+            setTimeout(() => handleDownloadInProgress(false), 1000);
+          }}
+        >
+          Download Collage
+        </Button>
+      </Box>
     </Grid>
   );
 };
